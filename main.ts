@@ -87,7 +87,6 @@ const getBalance = (spendings: Spending[], users: User[]) => {
     });
     return { balanceList, totalExpenses };
 }
-console.log(getBalance(spendings, users))
 
 const getAverage = (spendings: Spending[], users: User[]) => {
     let sum: number = 0
@@ -100,7 +99,7 @@ const getAverage = (spendings: Spending[], users: User[]) => {
     return average;
 }
 
-function getUserLagBehindAverage(spendings: Spending[], users: User[]) {
+function getTransactions(spendings: Spending[], users: User[]) {
     const { balanceList, totalExpenses } = getBalance(spendings, users);
     const average = getAverage(spendings, users);
     const creditors: UserBalance[] = [];
@@ -144,10 +143,10 @@ function getUserLagBehindAverage(spendings: Spending[], users: User[]) {
             debtors.shift();
         }
     }
-    return { creditorList, debtorList, transationList, totalExpenses  };
+    return { totalExpenses, creditorList, debtorList, transationList  };
 }
 
-const result = getUserLagBehindAverage(spendings, users);
+const result = getTransactions(spendings, users);
 console.log(result)
 
 
